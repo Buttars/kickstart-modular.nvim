@@ -208,6 +208,16 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
+        angularls = {},
+        bashls = {},
+        clangd = {},
+        cssls = {},
+        denols = {},
+        gopls = {},
+        html = {},
+        ts_ls = {},
+        yamlls = {},
+
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
@@ -241,6 +251,8 @@ return {
       --
       -- To check the current status of installed tools and/or manually install
       -- other tools, you can run
+      --  To check the current status of installed tools and/or manually install
+      --  other tools, you can run
       --    :Mason
       --
       -- You can press `g?` for help in this menu.
@@ -248,11 +260,27 @@ return {
       -- `mason` had to be setup earlier: to configure its options see the
       -- `dependencies` table for `nvim-lspconfig` above.
       --
+      --  You can press `g?` for help in this menu.
+      require('mason').setup()
+
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
+        'angularls',
+        'bashls',
+        'clangd',
+        'cssls',
+        'denols',
+        'gopls',
+        'html',
+        'nil_ls',
+        'nixpkgs-fmt', -- Nix formatter
+        'prettierd', -- js/ts formatter
         'stylua', -- Used to format Lua code
+        'ts_ls',
+        'yamlls',
+        'shellharden',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
