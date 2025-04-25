@@ -8,10 +8,8 @@ return {
   end,
   config = function()
     require('cyberdream').setup {
-      theme = {
-        colors = {
-          bg = '#0F0F11',
-        },
+      colors = {
+        bg = '#0F0F11',
       },
     }
   end,
