@@ -1,10 +1,21 @@
+local config_home = os.getenv 'XDG_CONFIG_HOME' or os.getenv 'HOME' .. '/.config'
+local copilot_config_path = config_home .. '/github-copilot/apps.json'
+local file_exists = false
+
+-- Check if the file exists
+local file = io.open(copilot_config_path, 'r')
+if file then
+  file:close()
+  file_exists = true
+end
+
 return {
   'zbirenbaum/copilot.lua',
   cmd = 'Copilot', -- lazy-load on command
   event = 'InsertEnter', -- or use a more eager trigger like 'VeryLazy'
   opts = {
     suggestion = {
-      enabled = true, -- Enable inline suggestions
+      enabled = file_exists, -- Set to true if the file exists, otherwise false
       auto_trigger = true, -- Automatically trigger suggestions as you type
       debounce = 75, -- Debounce time for suggestions
       keymap = {

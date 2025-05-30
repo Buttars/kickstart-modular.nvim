@@ -3,7 +3,7 @@ return {
   event = 'VeryLazy',
   version = false,
   opts = {
-    provider = 'copilot',
+    provider = os.getenv 'AVANTE_PROVIDER' or 'openai',
     openai = {
       endpoint = 'https://api.openai.com/v1',
       model = 'gpt-4o',
