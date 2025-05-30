@@ -58,7 +58,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 local function close_or_switch_buffer()
-  local buffers = vim.fn.getbufinfo { buflisted = true }
+  local buffers = vim.fn.getbufinfo { buflisted = 1 }
   if #buffers > 1 then
     local current_buf = vim.api.nvim_get_current_buf()
     vim.cmd 'bnext'
@@ -69,10 +69,19 @@ local function close_or_switch_buffer()
 end
 
 -- Buffer mappings
-vim.keymap.set('n', '<leader>gn', ':bnext<CR>', { desc = 'Go to next buffer' })
-vim.keymap.set('n', '<leader>gp', ':bprevious<CR>', { desc = 'Go to previous buffer' })
-vim.keymap.set('n', '<leader>gd', ':bdelete<CR>', { desc = 'Delete buffer' })
-vim.keymap.set('n', '<Leader>q', close_or_switch_buffer, { noremap = true, silent = true })
+-- Buffer navigation
+vim.keymap.set('n', '<leader>bn', ':bnext<CR>', { desc = 'Go to next buffer' })
+vim.keymap.set('n', '<leader>bp', ':bprevious<CR>', { desc = 'Go to previous buffer' })
+vim.keymap.set('n', '<leader>bd', ':bdelete<CR>', { desc = 'Delete current buffer' })
+
+-- Git-related keybindings
+vim.keymap.set('n', '<leader>gs', ':Git<CR>', { desc = 'Git status' })
+vim.keymap.set('n', '<leader>gd', ':Gdiffsplit<CR>', { desc = 'Git diff' })
+vim.keymap.set('n', '<leader>gb', ':Gblame<CR>', { desc = 'Git blame' })
+vim.keymap.set('n', '<leader>gl', ':Glog<CR>', { desc = 'Git log' })
+vim.keymap.set('n', '<leader>x', close_or_switch_buffer, { noremap = true, silent = true })
+vim.keymap.set('n', '<TAB', ':bnext<CR>', { desc = 'Go to next buffer' })
+vim.keymap.set('n', '<S-TAB>', ':bprevious<CR>', { desc = 'Go to previous buffer' })
 
 -- Toggle Spellcheck
 vim.keymap.set('n', '<leader>tz', ':setlocal spell!<CR>', { desc = 'Toggle Spellcheck' })
