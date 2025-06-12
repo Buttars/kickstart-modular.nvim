@@ -212,7 +212,6 @@ return {
         bashls = {},
         clangd = {},
         cssls = {},
-        denols = {},
         gopls = {},
         html = {},
         ts_ls = {
